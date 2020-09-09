@@ -104,6 +104,12 @@ function SliderWorks() {
 				_allDots[indexOfCurrentSlide].classList.add('active');
 				_allDots[indexOfCurrentSlide + 1].classList.remove('active');
 			}
+
+			_allDots.addEventListener('click', setNextSlider);
+		}
+
+		function onClickDots(e) {
+			console.log(e);
 		}
 
 		// ------------------------------------------------------------------------------------------------ //
