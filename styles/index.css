@@ -180,9 +180,9 @@ select {
 	/* background: rgb(64, 64, 64); */
 	border-radius: 50%;
 	border: 1px solid black;
-	width: 12px;
-	height: 12px;
-	margin: 0 2px;
+	width: 11px;
+	height: 11px;
+	margin: 0 3px;
 	cursor: pointer;
 }
 
