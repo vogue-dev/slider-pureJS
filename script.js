@@ -1,17 +1,17 @@
 let _slider = document.querySelector('#slider');
-let _sliders = document.querySelectorAll('.slider__item');
-let _prev = document.querySelector('.button__prev');
-let _next = document.querySelector('.button__next');
+let _sliders = document.querySelectorAll('.slider__item'); // слайды
+let _prev = document.querySelector('.button__prev'); // next >>>
+let _next = document.querySelector('.button__next'); // prev <<<
 let _dotsField = document.querySelector('.dots__field');
+let numbersOfAllSliders = _sliders.length; // количество всех слайдеров
 let { prevDot, nextDot } = true;
 
-let autoSlides = false; // автопролистывание слайдов - true/false
+let autoSlides = true; // автопролистывание слайдов - true/false
 let speedAutoSlides = 4 * 1000; // скорость пролистывания - в секундах
 indexOfCurrentSlide = 0; // стартовое положение слайдера - transform: translateX (0%)
 
 function SliderWorks() {
 	return function () {
-		let numbersOfAllSliders = _sliders.length;
 		console.log('start', `indexOfCurrentSlide - ${indexOfCurrentSlide}`);
 
 		// ------------------------------------------------------------------------------------------------ //
@@ -50,7 +50,7 @@ function SliderWorks() {
 				indexOfCurrentSlide -= 1;
 				transformValue = -100 * indexOfCurrentSlide;
 				_slider.style.transform = 'translateX(' + transformValue + '%)';
-				checkedActiveDot(indexOfCurrentSlide, (prevDot = true));
+				checkedActiveDot(indexOfCurrentSlide, prevDot);
 
 				// удаление существующего и создание нового таймера
 				if (autoSlides === true) {
@@ -58,22 +58,16 @@ function SliderWorks() {
 					timer = setInterval(setNextSlider, speedAutoSlides);
 				}
 			}
-			console.log(
-				'setPrevSlider',
-				`indexOfCurrentSlide - ${indexOfCurrentSlide}`,
-				`timerID = ${timer}`
-			);
+			// console.log
+			autoSlides === true
+				? console.log(
+						'setNextSlider',
+						`indexOfCurrentSlide - ${indexOfCurrentSlide}`,
+						`timerID = ${timer}`
+				  )
+				: console.log('setNextSlider', `indexOfCurrentSlide - ${indexOfCurrentSlide}`);
+			// -----------
 		}
-
-		// console.log
-		autoSlides === true
-			? console.log(
-					'setNextSlider',
-					`indexOfCurrentSlide - ${indexOfCurrentSlide}`,
-					`timerID = ${timer}`
-			  )
-			: console.log('setNextSlider', `indexOfCurrentSlide - ${indexOfCurrentSlide}`);
-		// -----------
 
 		// ------------------------------------------------------------------------------------------------ //
 		//							 КОНЕЦ ФУНКЦИЙ ПЕРЕЛИСТЫВАНИЯ, НАЧАЛО DOTS/ТОЧЕК
@@ -104,8 +98,6 @@ function SliderWorks() {
 				_allDots[indexOfCurrentSlide].classList.add('active');
 				_allDots[indexOfCurrentSlide + 1].classList.remove('active');
 			}
-
-			_allDots.addEventListener('click', setNextSlider);
 		}
 
 		function onClickDots(e) {
