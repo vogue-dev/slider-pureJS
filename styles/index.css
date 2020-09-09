@@ -169,12 +169,23 @@ select {
 .dots__field {
 	width: 100%;
 	position: absolute;
-	bottom: 0;
+	bottom: 10px;
 	display: flex;
 	justify-content: center;
 }
 
 .dots__field .dot {
-	width: 14px;
-	padding: 0 3px;
+	display: block;
+	background: rgba(64, 64, 64, 0.1);
+	/* background: rgb(64, 64, 64); */
+	border-radius: 50%;
+	border: 1px solid black;
+	width: 12px;
+	height: 12px;
+	margin: 0 2px;
+	cursor: pointer;
+}
+
+.dots__field .dot.active {
+	background: rgba(64, 64, 64, 0.75);
 }
