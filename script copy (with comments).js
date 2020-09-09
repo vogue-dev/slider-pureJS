@@ -7,11 +7,17 @@ let numbersOfAllSliders = _sliders.length; // количество всех сл
 let { prevDot, nextDot } = true;
 
 let autoSlides = true; // автопролистывание слайдов - true/false
-let speedAutoSlides = 3 * 1000; // скорость пролистывания - в секундах
+let speedAutoSlides = 4 * 1000; // скорость пролистывания - в секундах
 indexOfCurrentSlide = 0; // стартовое положение слайдера - transform: translateX (0%)
 
 function SliderWorks() {
 	return function () {
+		console.log('start', `indexOfCurrentSlide - ${indexOfCurrentSlide}`);
+
+		// ------------------------------------------------------------------------------------------------ //
+		//				    	 Функции пролистывания слайдов вперед/назад
+		// ------------------------------------------------------------------------------------------------ //
+
 		// Функция пролистывания слайдов вперед по нажатию на <<<
 		function setNextSlider() {
 			if (indexOfCurrentSlide < numbersOfAllSliders - 1) {
@@ -27,6 +33,15 @@ function SliderWorks() {
 					timer = setInterval(setNextSlider, speedAutoSlides);
 				}
 			}
+			// console.log
+			autoSlides === true
+				? console.log(
+						'setNextSlider',
+						`indexOfCurrentSlide - ${indexOfCurrentSlide}`,
+						`timerID = ${timer}`
+				  )
+				: console.log('setNextSlider', `indexOfCurrentSlide - ${indexOfCurrentSlide}`);
+			// -----------
 		}
 
 		// Функция пролистывания слайдов вперед по нажатию на >>>
@@ -43,7 +58,20 @@ function SliderWorks() {
 					timer = setInterval(setNextSlider, speedAutoSlides);
 				}
 			}
+			// console.log
+			autoSlides === true
+				? console.log(
+						'setNextSlider',
+						`indexOfCurrentSlide - ${indexOfCurrentSlide}`,
+						`timerID = ${timer}`
+				  )
+				: console.log('setNextSlider', `indexOfCurrentSlide - ${indexOfCurrentSlide}`);
+			// -----------
 		}
+
+		// ------------------------------------------------------------------------------------------------ //
+		//							 КОНЕЦ ФУНКЦИЙ ПЕРЕЛИСТЫВАНИЯ, НАЧАЛО DOTS/ТОЧЕК
+		// ------------------------------------------------------------------------------------------------ //
 
 		function dotsCreater(num) {
 			for (i = 0; i < num; i++) {
@@ -72,6 +100,14 @@ function SliderWorks() {
 			}
 		}
 
+		function onClickDots(e) {
+			console.log(e);
+		}
+
+		// ------------------------------------------------------------------------------------------------ //
+		//									    ЗАПУСКАЕМ ФУНКЦИИ
+		// ------------------------------------------------------------------------------------------------ //
+
 		_next.addEventListener('click', setNextSlider);
 		_prev.addEventListener('click', setPrevSlider);
 		autoSlides ? (timer = setInterval(setNextSlider, speedAutoSlides)) : '';
@@ -79,5 +115,9 @@ function SliderWorks() {
 		checkedActiveDot(indexOfCurrentSlide);
 	};
 }
+
+// [done] 1. создавать нужное количество точек
+// [done] 2. проверять что бы index = точке, сделать active класс
+// 3. по нажатию - переходил на нужный слайд
 
 SliderWorks()();
