@@ -100,7 +100,7 @@ select {
 	transition-duration: 0.3s;
 	-moz-transition-duration: 0.3s;
 	-o-transition-duration: 0.3s;
-	-webkit-transition-duration: 0.3s;
+	-webkit-transition-duration: 3s;
 
 	display: flex;
 }
@@ -170,15 +170,14 @@ select {
 	width: 100%;
 	position: absolute;
 	bottom: 0;
-}
-
-.dots__field ul {
 	display: flex;
 	justify-content: center;
-	list-style-type: none;
 }
 
-.dots__field ul li {
-	padding: 0 3px;
+.dots__field .dot {
 	width: 14px;
+	padding: 0 3px;
+}
+
+.dots__field .dot svg {
 }
