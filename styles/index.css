@@ -150,6 +150,8 @@ select {
 }
 
 .button__prev:hover,
+.button__prev:active,
+.button__next:hover,
 .button__next:hover {
 	cursor: pointer;
 	color: white;
