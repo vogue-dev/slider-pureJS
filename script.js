@@ -2,22 +2,23 @@ let _slider = document.querySelector('#slider');
 let _sliders = document.querySelectorAll('.slider__item');
 let _prev = document.querySelector('.button__prev');
 let _next = document.querySelector('.button__next');
-let autoSlides = false;
-let speedAutoSlides = 1 * 1000; // 1 sec
-currentSlider = 0;
+let autoSlides = true; // автопролистывание слайдов - true/false
+let speedAutoSlides = 4 * 1000; // скорость пролистывания - в секундах
+currentSlider = 0; // стартовое положение слайдера - transform: translateX (0%)
 
 function SliderWorks() {
 	return function () {
-		console.log('000', currentSlider);
+		console.log('start', `currentSlide - ${currentSlider}`);
+
 		function setNextSlider() {
 			if (currentSlider < _sliders.length - 1) {
 				currentSlider += 1;
 				transformValue = -100 * currentSlider;
 				_slider.style.transform = 'translateX(' + transformValue + '%)';
-				timer = clearTimeout(timer);
+				clearTimeout(timer);
 				timer = setInterval(setNextSlider, speedAutoSlides);
 			}
-			console.log('111', currentSlider);
+			console.log('setNextSlider', `currentSlide - ${currentSlider}`, `timerID = ${timer}`);
 		}
 
 		function setPrevSlider() {
@@ -25,15 +26,17 @@ function SliderWorks() {
 				currentSlider -= 1;
 				transformValue = -100 * currentSlider;
 				_slider.style.transform = 'translateX(' + transformValue + '%)';
-				timer = clearTimeout(timer);
+				clearTimeout(timer);
 				timer = setInterval(setNextSlider, speedAutoSlides);
 			}
-			console.log('222', currentSlider);
+			console.log('setPrevSlider', `currentSlide - ${currentSlider}`, `timerID = ${timer}`);
 		}
 
 		_next.addEventListener('click', setNextSlider);
 		_prev.addEventListener('click', setPrevSlider);
 		autoSlides ? (timer = setInterval(setNextSlider, speedAutoSlides)) : '';
+
+		console.log('end', `currentSlide - ${currentSlider}`, `timerID = ${timer}`);
 	};
 }
 
