@@ -179,7 +179,6 @@ select {
 .dots__field .dot {
 	display: block;
 	background: rgba(64, 64, 64, 0.1);
-	/* background: rgb(64, 64, 64); */
 	border-radius: 50%;
 	border: 1px solid black;
 	width: 11px;
